@@ -3,7 +3,7 @@
 #include <time.h>
 #include <limits.h>
 
-#define DEFAULT 10000   /* Heap Size controlled here */
+#define DEFAULT 10000   /* Sets Default Heap Size */
 #define WRITE "w"
 #define NULL_INT (-1)
 /*
@@ -16,9 +16,13 @@
  *
  *      Can Generate:
  *
- *          0           sorted insert and delete series
- *          1           randomly generated set of grouped instructions
+ *          0           sorted series of inserts and deletes                    full
+ *          1           randomly generated set of grouped instructions          partial
  *          2           randomly generated set of interleaved instructions
+ *
+ *      Will Make:
+ *
+ *          Input and Corresponding Output File for Testing
  */
 
 void test_scenario_chooser(int);
@@ -30,7 +34,7 @@ void generate_deletemin_untrackable(int);
 void generate_interleaved(int);
 int test_size(void);
 
-FILE *infp, *outfp;
+FILE *infp, *outfp; /* for easy reference later */
 
 int main(void)
 {
@@ -58,7 +62,7 @@ int main(void)
 void test_scenario_chooser(int siz) {
     int c;
 
-    printf("Choose a Test Case: | (0) Simple | (1) Grouped | (2) Interleaved\n");
+    printf("Choose a Test Case: | (0) Predictable, Ordered Test | (1) Grouped | (2) Interleaved\n");
     getchar();
     switch (c = getchar()) {
     case '0' :
@@ -78,17 +82,18 @@ void test_scenario_chooser(int siz) {
         break;
     }
 }
+
+/* Uses Default or User Provided Size */
 int test_size(void) {
-    int choice;
+    int n;
 
     printf("Default Size of %i or Custom Size? Choose: d/c\n", DEFAULT);
 
-    if (getchar() == 'd')
+    if (getchar() == 'c') {
+        scanf("%i", &n);
+        return n;
+    } else
         return DEFAULT;
-    else {
-        scanf("%i", &choice);
-        return choice;
-    }
 }
 
 /* Generate a Number for Initialization */
@@ -107,7 +112,7 @@ void generate_insert(int siz) {
     srand((unsigned)time(NULL));
 
     for (i = 0; i < siz; ++i) {
-        n = rand() % INT_MAX;
+        n = rand();
         fprintf(infp, "0 %i\n", n);
         fprintf(outfp, "insert %i\n", n);
     }
@@ -155,7 +160,7 @@ void generate_interleaved(int lim) {
     lim *= 2;
     while (lim--) {
 
-        i = rand() % INT_MAX;
+        i = rand();
 
         if (i % 2) {
             fprintf(infp, "1\n");
@@ -166,5 +171,4 @@ void generate_interleaved(int lim) {
         }
     }
 }
-
 
