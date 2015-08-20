@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <limits.h>
 
 #define DEFAULT 10000   /* Sets Default Heap Size */
 #define WRITE "w"
