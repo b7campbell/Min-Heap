@@ -50,7 +50,6 @@ int main(void)
     }
 
     siz = test_size();
-    generate_initializer(siz);
     test_scenario_chooser(siz);
 
     fclose(infp);
@@ -78,7 +77,7 @@ void test_scenario_chooser(int siz) {
         break;
     default :
         fprintf(stderr, "Error: Unrecognized Test Case: %d\n", c);
-        exit(1);
+        exit(EXIT_FAILURE);
         break;
     }
 }
@@ -94,14 +93,6 @@ int test_size(void) {
         return n;
     } else
         return DEFAULT;
-}
-
-/* Generate a Number for Initialization */
-void generate_initializer(int init_size) {
-    extern FILE *infp, *outfp;
-
-    fprintf(infp, "%d\n", init_size);
-    fprintf(outfp, "read heap size %d\n", init_size);
 }
 
 /* Generate a Unique Set of Integers to be Inserted */
