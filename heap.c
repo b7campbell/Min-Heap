@@ -25,9 +25,8 @@ void initialize_heap(size_t m) {
 void clear_heap(void) {
     int i;
 
-    for (i = 0; i < heapp.max_size; ++i) {
+    for (i = 0; i < heapp.max_size; ++i)
         heapp.hep[i] = EMPTY;
-    }
 }
 
 /*
