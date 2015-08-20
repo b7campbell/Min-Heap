@@ -22,4 +22,4 @@ Entirely done in C. Because access to familiar tools like the C++ STL are not av
 
 Using Valgrind, the data structure has been confirmed to avoid memory leaks of any kind. 
 
-In addition, the repo comes with a test generation executable that can create a variety of scenarios. For futher security, a check of the heap's elements is made after each insert to ensure structural integrity. This operation is not meant for use except for debugging during development.
+In addition, the repo comes with a test generation executable that can create a variety of scenarios. 
