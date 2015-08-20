@@ -72,6 +72,9 @@ int main(int argc, char *argv[]) {
 
     verify_heap();
     free(heapp.hep);
+    free(line);
+    fclose(infp);
+    fclose(outfp);
     return 0;
 }
 
