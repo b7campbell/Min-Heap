@@ -10,21 +10,19 @@ struct Heap {
     int size;
     int max_size;
     int *hep;
-    /* BCC: allocate array of integers */
-    /* point back to HashItem */
 };
 
 extern struct Heap heapp;
+extern FILE* outfp;
 
+void initialize_heap(size_t);
+void clear_heap(void);
 
 void insert(int);
 void deletemin(void);
 
 void per_up(int);
 void per_down(int);
-
-void print_heap(void);
-
 
 #endif /* HEAP_H */
 
